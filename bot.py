@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import sys
-from env import Telegram as telegram
+from env import Telegram
 
 from aiogram import Bot, Dispatcher, Router, html
 from aiogram.client.default import DefaultBotProperties
@@ -13,6 +13,7 @@ from aiogram.types import (
     InlineKeyboardMarkup, WebAppInfo,
 )
 
+telegram = Telegram()
 router = Router()
 
 
@@ -22,14 +23,14 @@ async def command_start(message: Message) -> None:
         f"Здравствуйте, {html.quote(message.from_user.first_name)},"
         f" чтобы прейти в приложение Web App, нажмите кнопку",
         reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text='Web App', web_app=WebAppInfo(url="https://ivalukyan-yclients-backend-1f22.twc1.net/"))]
+            [InlineKeyboardButton(text='Web App', web_app=WebAppInfo(url=telegram.url))]
         ]),
     )
 
 
 async def main():
     # Initialize Bot instance with default bot properties which will be passed to all API calls
-    bot = Bot(token=telegram().token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    bot = Bot(token=telegram.token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     dp = Dispatcher()
 
