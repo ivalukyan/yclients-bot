@@ -23,7 +23,7 @@ async def command_start(message: Message) -> None:
         f"Здравствуйте, {html.quote(message.from_user.first_name)},"
         f" чтобы прейти в приложение Web App, нажмите кнопку",
         reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text='Web App', web_app=WebAppInfo(url=telegram.url))]
+            [InlineKeyboardButton(text='Web App', web_app=WebAppInfo(url="https://ivalukyan-yclients-backend-1f22.twc1.net/"))]
         ]),
     )
 
